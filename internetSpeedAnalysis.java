@@ -6,12 +6,58 @@ public class internetSpeedAnalysis {
         File incomes = new File("incomeData.csv"); 
         System.out.println(find20HighestIncomeCountry(incomes)); 
         System.out.println(find20LowestIncomeCountry(incomes));
+        File internetSpeeds = new File("internet speed data.csv"); 
+        compareSpeedByIncome(internetSpeeds, find20HighestIncomeCountry(incomes), find20LowestIncomeCountry(incomes)); 
     }
 
-    // public static void compareSpeedByIncome (File dataset, ArrayList<String> tenLowest, ArrayList<String> tenHighest) throws FileNotFoundException {
-    //     int averageSpeedOfHighIncome = 0; 
-    //     int averageSpeedOfLowIncome = 0; 
-    // }   
+    public static void compareSpeedByIncome (File dataSet, ArrayList<String> twentyLowest, ArrayList<String> twentyHighest) throws FileNotFoundException {
+        Scanner fileScan = new Scanner(dataSet); 
+        String [] header = fileScan.nextLine().split(",");
+
+        ArrayList <String> headerAsL = new ArrayList<String> (Arrays.asList(header)); 
+
+        int countryIndex = headerAsL.indexOf("country"); 
+        int broadbandIndex = 1; //SAME ISSUE AS OTHER METHOD
+
+        int totalSpeedHighIncome = 0; 
+        int totalSpeedLowIncome = 0; 
+        double averageSpeedHighIncome = 0; 
+        double averageSpeedLowIncome = 0; 
+
+        while (fileScan.hasNextLine()) { //parse through each line 
+            String[] currLineArr = fileScan.nextLine().split(","); 
+            ArrayList <String> currLineAsL = new ArrayList<> (Arrays.asList(currLineArr)); 
+
+            for (int i = 0; i<twentyHighest.size(); i++) {
+                if (currLineAsL.get(countryIndex).equals(twentyHighest.get(i))) {//if country of current line is one of the countries with the 20 highest incomes...
+                    totalSpeedHighIncome += Integer.parseInt(currLineAsL.get(broadbandIndex)); //adds corresponding broadband value
+                }
+            }
+
+            for (int j = 0; j<twentyLowest.size(); j++) {
+                if (currLineAsL.get(countryIndex).equals(twentyLowest.get(j))) {//if country of current line is one of the countries with the 20 lowest incomes...
+                    totalSpeedLowIncome += Integer.parseInt(currLineAsL.get(broadbandIndex)); //adds corresponding broadband value
+                }
+            }
+        }
+
+        averageSpeedHighIncome = totalSpeedHighIncome/twentyHighest.size(); 
+        averageSpeedLowIncome = totalSpeedLowIncome/twentyLowest.size(); 
+
+        System.out.println("The average speed of high income countries is " + averageSpeedHighIncome); 
+        System.out.println("The average speed of low income countries is " + averageSpeedLowIncome); 
+        //create arraylist
+        //scan through each line 
+        //split up each line into array 
+        //convert array for each line into arraylist
+        //loop through names in ten highest 
+            //  if the .get(countryIndex) = name in twentyHighestIncome, then add to broadband total 
+        //find average of highestIncomeCOuntries
+
+        //*Same 3 steps for low income 
+
+        
+    }   
 
     // public static void compareSpeedByContinent (File dataset) throws FileNotFoundException {
         
@@ -104,6 +150,10 @@ public class internetSpeedAnalysis {
         }
         return twentyHighestCountries; 
     }
+
+    // public static void matchCountryLists (File internetSpeed, File income) throws FileNotFoundException {
+     
+    // }
 }
 
 //list of all ountries ine one, list of all countries in the other, and then print out the countries that arent in the main set
