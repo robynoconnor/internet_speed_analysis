@@ -284,31 +284,4 @@ public class internetSpeedAnalysis {
         return twentyMostPopCountries; 
     }   
 }
-//list of all ountries ine one, list of all countries in the other, and then print out the countries that arent in the main set
-    //find average income of 20 lowest countries 
-    //get list of 20 lowest countries + their average income 
-    //use list of 20 lowest countries + their average broadband 
-    //method to find 20 lowest average income 
 
-    //method to find 20 middle average income 
-
-    //method to find 20 highest averaeg income 
-
-    //find average broadband speed given  
-
-    //find average broadband speed given 
-
-//czech republic 
-//tonga 
-//gabon 
-//Dominia
-//Samoa,2537,3418,6795,222.382
-//Tuvalu,2099,2802,4470,11.312
-//comoros
-//Eswatini,1097,2091,9003,1201.67
-//Timor-Leste,970,1147,3709,1341.296
-//Sao Tome and Principe,901,1620,4145,227.38
-//Republic of the Congo,892,1375,3835,5970.424
-//South Sudan,793,1121,1234,10913.164
-//Benin,699,989,3432,13352.864
-//entral African Republic,491,891,986,5579.144
