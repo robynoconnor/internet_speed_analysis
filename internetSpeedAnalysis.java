@@ -4,16 +4,15 @@ import java.io.*;
 public class internetSpeedAnalysis {
     public static void main (String [] args) throws FileNotFoundException {
         File incomes = new File("incomeData.csv"); 
-        System.out.println(find20HighestIncomeCountry(incomes)); 
-        //System.out.println(find20LowestIncomeCountry(incomes));
         File internetSpeeds = new File("internet speed data.csv"); 
-        compareSpeedByIncome(internetSpeeds, find20LowestIncomeCountry(incomes), find20HighestIncomeCountry(incomes)); 
+        compareSpeedByIncome(internetSpeeds, find20LowestIncomeCountry(incomes), find20HighestIncomeCountry(incomes));
+        System.out.println("");     
         File populations = new File("populations.csv"); 
-        //System.out.println(find20MostPopulated(populations)); 
-        //System.out.println(find20LeastPopulated(populations)); 
-        //compareSpeedByPop(internetSpeeds, find20LeastPopulated(populations), find20MostPopulated(populations)); 
+        compareSpeedByPop(internetSpeeds, find20LeastPopulated(populations), find20MostPopulated(populations)); 
     }
 
+    //method to compare the average broadband sped of high income-earning countries and low income-earning countries
+    //larger purpose is to assess the relationship between a countries average income and its average broadband speed
     public static void compareSpeedByIncome (File dataSet, ArrayList<String> twentyLowest, ArrayList<String> twentyHighest) throws FileNotFoundException {
         Scanner fileScan = new Scanner(dataSet); 
         String [] header = fileScan.nextLine().split(",");
@@ -48,14 +47,17 @@ public class internetSpeedAnalysis {
         averageSpeedHighIncome = totalSpeedHighIncome/twentyHighest.size(); 
         averageSpeedLowIncome = totalSpeedLowIncome/twentyLowest.size(); 
 
-        System.out.print("The average broadband speed of the 20 of the highest income-earning countries is "); 
+        System.out.print("The average broadband speed of 20 of the highest income-earning countries is "); 
         System.out.printf("%.2f", averageSpeedHighIncome); //rounds average broadband to 2 decimal places (for simplicity)
         System.out.println("."); 
-        System.out.print("The average broadband speed of the 20 of the lowest income-earning countries is "); 
+        System.out.print("The average broadband speed of 20 of the lowest income-earning countries is "); 
         System.out.printf("%.2f", averageSpeedLowIncome); 
         System.out.println("."); 
     }   
 
+
+    //method to compare the average broadband sped of highly populated and lowly populated countries
+    //larger purpose is to assess the relationship between a countries population and its average broadband speed
     public static void compareSpeedByPop (File dataSet, ArrayList<String> twentyLowest, ArrayList<String> twentyHighest) throws FileNotFoundException {
         Scanner fileScan = new Scanner(dataSet); 
         String [] header = fileScan.nextLine().split(",");
@@ -98,6 +100,7 @@ public class internetSpeedAnalysis {
         System.out.println("."); 
     }
 
+    //method to find 20 countries with the lowest incomes
     public static ArrayList<String> find20LowestIncomeCountry (File dataSet) throws FileNotFoundException {
         Scanner fileScan = new Scanner(dataSet); 
         String [] header = fileScan.nextLine().split(",");
@@ -105,8 +108,9 @@ public class internetSpeedAnalysis {
 
         ArrayList <Integer> allAverageIncomes = new ArrayList<>(); 
         
+        //bug requires hardcoding here
         int meanIncomeIndex = 2;
-        int countryIndex = 0; //EDIT had to hard code 
+        int countryIndex = 0; 
 
         while (fileScan.hasNextLine()) {
             String[] currLineArr = fileScan.nextLine().split(","); 
@@ -142,6 +146,7 @@ public class internetSpeedAnalysis {
         return twentyLowestIncomeCountries; 
     }
 
+    //method to find 20 countries with the highest incomes 
     public static ArrayList<String> find20HighestIncomeCountry (File dataSet) throws FileNotFoundException {
         Scanner fileScan = new Scanner(dataSet); 
         String [] header = fileScan.nextLine().split(",");
@@ -149,8 +154,9 @@ public class internetSpeedAnalysis {
         
         ArrayList <Integer> allAverageIncomes = new ArrayList<>(); 
         
+        //bug requires hardcoding here
         int meanIncomeIndex = 2;  
-        int countryIndex = 0; //EDIT had to hard code for some reason bc i was getting -1 as index of country 
+        int countryIndex = 0; 
 
         while (fileScan.hasNextLine()) {
             String[] currLineArr = fileScan.nextLine().split(","); 
@@ -186,10 +192,7 @@ public class internetSpeedAnalysis {
         return twentyHighestCountries; 
     }
 
-    //public static void matchCountryLists (File internetSpeed, File income) throws FileNotFoundException {
-     
-    // }
-
+    //method to find 20 countries with the lowest populations
     public static ArrayList<String> find20LeastPopulated (File dataSet) throws FileNotFoundException {
         Scanner fileScan = new Scanner(dataSet); 
         String [] header = fileScan.nextLine().split(",");
@@ -197,8 +200,9 @@ public class internetSpeedAnalysis {
         
         ArrayList <Double> allPopulations = new ArrayList<>(); 
         
+        //bug requires hardcoding here
         int populationIndex = 2;  
-        int countryIndex = 1; //EDIT had to hard code for some reason bc i was getting -1 as an index 
+        int countryIndex = 1; 
 
         while (fileScan.hasNextLine()) {
             String[] currLineArr = fileScan.nextLine().split(","); 
@@ -234,6 +238,7 @@ public class internetSpeedAnalysis {
         return twentyLeastPopCountries; 
     }
 
+    //method to find 20 countries with the highest populations
     public static ArrayList<String> find20MostPopulated (File dataSet) throws FileNotFoundException {
         Scanner fileScan = new Scanner(dataSet); 
         String [] header = fileScan.nextLine().split(",");
@@ -241,8 +246,9 @@ public class internetSpeedAnalysis {
         
         ArrayList <Double> allPopulations = new ArrayList<>(); 
         
+        //bug requires hardcoding here
         int populationIndex = 2;  
-        int countryIndex = 1; //EDIT had to hard code for some reason bc i was getting -1 as an index 
+        int countryIndex = 1;
 
         while (fileScan.hasNextLine()) {
             String[] currLineArr = fileScan.nextLine().split(","); 
